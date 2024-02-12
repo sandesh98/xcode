@@ -1,15 +1,13 @@
 //
-//  ProfileView.swift
+//  CurrentUserProfileView.swift
 //  Instagram-clone
 //
-//  Created by Sandesh Boedhoe on 09/02/2024.
+//  Created by Sandesh Boedhoe on 12/02/2024.
 //
 
 import SwiftUI
 
-struct ProfileView: View {
-    
-    let user: User
+struct CurrentUserProfileView: View {
     
     private let gridItems: [GridItem] = [
         .init(.flexible(), spacing: 1),
@@ -21,9 +19,9 @@ struct ProfileView: View {
         ScrollView {
             VStack(spacing: 12) {
                 HStack {
-                    Image(user.ProfileImageURL ?? "profile")
+                    Image("profile")
                         .resizable()
-                        .scaledToFill()
+                        .scaledToFit()
                         .frame(width: 80, height: 80)
                         .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
                     
@@ -39,17 +37,12 @@ struct ProfileView: View {
                 .padding(.horizontal)
                 
                 VStack (alignment: .leading) {
-                    if let fullname = user.fullname {
-                        Text(user.username)
-                            .font(.footnote)
-                            .fontWeight(.semibold)
-                    }
+                    Text("Sandesh Boedhoe")
+                        .font(.footnote)
+                        .fontWeight(.semibold)
                     
-                    if let bio = user.bio {
-                        Text(user.bio!)
-                            .font(.footnote)
-                    }
-
+                    Text("Bubba de daggoe")
+                        .font(.footnote)
                 }
                 .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .leading)
                 .padding(.horizontal)
@@ -86,9 +79,19 @@ struct ProfileView: View {
         }
         .navigationTitle("Profile")
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    
+                } label: {
+                    Image(systemName: "line.3.horizontal")
+                        .foregroundColor(.black)
+                }
+            }
+        }
     }
 }
 
 #Preview {
-    ProfileView(user: User.MOCK_USERS[0])
+    CurrentUserProfileView()
 }
